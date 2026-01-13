@@ -1,0 +1,428 @@
+:root {
+    /* Brand Colors */
+    --color-bg: #F0F2F5;
+    --color-primary: #CCFF00;
+    /* Neon Lime/Yellow */
+    --color-primary-hover: #b3e600;
+    --color-dark: #1A1A1A;
+    --color-text: #222222;
+    --color-text-light: #666666;
+    --color-danger: #FF4D4D;
+
+    /* Effects */
+    --glass-bg: rgba(255, 255, 255, 0.90);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.8);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.05);
+    --radius-card: 16px;
+    --radius-btn: 8px;
+
+    --radius-btn: 8px;
+
+    --font-stack: 'Outfit', sans-serif;
+}
+
+/* Sun Mode (High Contrast) */
+body.sun-mode {
+    --color-bg: #FFFFFF;
+    --color-primary: #000000;
+    /* Black for max contrast */
+    --color-primary-hover: #333333;
+    --color-dark: #000000;
+    --color-text: #000000;
+    --color-text-light: #000000;
+    --glass-bg: #FFFFFF;
+    --glass-border: 2px solid #000000;
+    --shadow-card: none;
+}
+
+body.sun-mode .highlight::after {
+    background-color: #FFFF00;
+    /* Pure yellow highlighter */
+    height: 50%;
+}
+
+body.sun-mode .btn-primary {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #000000;
+    box-shadow: none;
+}
+
+body.sun-mode .btn-primary:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+body.sun-mode .card,
+body.sun-mode .glass {
+    border: 2px solid #000000;
+    box-shadow: none;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    /* Subtle beach texture or gradient */
+    background: radial-gradient(circle at top left, rgba(204, 255, 0, 0.1), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.05), transparent 40%);
+}
+
+.app-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Header --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.logo h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--color-dark);
+    letter-spacing: -0.05em;
+}
+
+.highlight {
+    color: var(--color-dark);
+    position: relative;
+    z-index: 1;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: var(--color-primary);
+    z-index: -1;
+    border-radius: 4px;
+}
+
+/* --- Buttons --- */
+.btn {
+    border: none;
+    padding: 10px 20px;
+    font-family: var(--font-stack);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    box-shadow: 0 4px 15px rgba(204, 255, 0, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: var(--color-dark);
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+}
+
+.btn-outline-danger {
+    background: transparent;
+    border: 1px solid var(--color-danger);
+    color: var(--color-danger);
+}
+
+.btn-outline-danger:hover {
+    background: var(--color-danger);
+    color: white;
+}
+
+.btn-lg {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+}
+
+/* --- Glass Elements --- */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 24px;
+}
+
+/* --- Views --- */
+.view {
+    animation: fadeIn 0.4s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Cadastro --- */
+.center-content {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.subtitle {
+    margin-bottom: 20px;
+    color: var(--color-text-light);
+}
+
+textarea {
+    width: 100%;
+    min-height: 250px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: var(--radius-btn);
+    font-family: monospace;
+    font-size: 1rem;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--color-dark);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    background: #e0e0e0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* --- Torneio Layout --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Match List --- */
+.match-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.match-card {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.match-card.completed {
+    border-left-color: var(--color-primary);
+}
+
+.team-name {
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.team-name.right {
+    text-align: right;
+}
+
+.score-board {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 15px;
+}
+
+.score-input {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+.score-input:focus {
+    outline: none;
+    border-color: var(--color-dark);
+}
+
+.vs-divider {
+    color: #ccc;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* --- Table --- */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--color-text-light);
+    padding: 10px 5px;
+    border-bottom: 2px solid #eee;
+}
+
+td {
+    padding: 12px 5px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 0.9rem;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+td strong {
+    color: var(--color-dark);
+    font-weight: 800;
+}
+
+/* --- Bracket --- */
+.bracket-container {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    min-height: 400px;
+    padding: 40px;
+}
+
+.bracket-round {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-width: 250px;
+    flex: 1;
+}
+
+.bracket-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.bracket-card .label {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+}
+
+/* --- Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-box h3 {
+    margin-bottom: 15px;
+}
+
+.modal-box p {
+    margin-bottom: 25px;
+    color: var(--color-text-light);
+}

@@ -20,6 +20,8 @@
                 <h1>1º Open <span class="highlight">Sabrina</span> de Beach Tennis</h1>
             </div>
             <nav id="app-nav" class="hidden">
+                <button id="btn-export" class="btn btn-outline-info" style="margin-right: 5px;">Exportar</button>
+                <button id="btn-import" class="btn btn-outline-info" style="margin-right: 5px;">Importar</button>
                 <button id="btn-reset" class="btn btn-outline-danger">Limpar Torneio</button>
             </nav>
         </header>
@@ -44,7 +46,11 @@ Daniel
 
                     <div class="actions">
                         <span id="player-count" class="badge">0 jogadores</span>
-                        <button id="btn-sortear" class="btn btn-primary btn-lg">Sortear Duplas</button>
+                        <div class="button-group">
+                            <button id="btn-import-home" class="btn btn-secondary"
+                                title="Restaurar de backup">Importar</button>
+                            <button id="btn-sortear" class="btn btn-primary btn-lg">Sortear Duplas</button>
+                        </div>
                     </div>
                     <p id="error-msg" class="error-text hidden"></p>
                 </div>

@@ -237,6 +237,11 @@ textarea:focus {
     align-items: center;
 }
 
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
 .badge {
     background: #e0e0e0;
     padding: 5px 12px;

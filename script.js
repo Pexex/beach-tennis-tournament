@@ -376,6 +376,39 @@ function actionGenerateKnockout() {
     saveState();
 }
 
+function actionExport() {
+    const data = JSON.stringify(appState);
+    navigator.clipboard.writeText(data).then(() => {
+        showModal('Backup Exportado', 'Os dados do torneio foram copiados para a área de transferência. Cole em um bloco de notas ou envie por WhatsApp para salvar.');
+    }).catch(err => {
+        showModal('Erro', 'Não foi possível copiar automaticamente. Tente novamente.');
+        console.error(err);
+    });
+}
+
+function actionImport() {
+    // Simple prompt for now
+    const input = prompt("Cole aqui o código de backup (JSON) do torneio:");
+    if (!input) return;
+
+    try {
+        const data = JSON.parse(input);
+        // Basic validation
+        if (!data.step || !Array.isArray(data.players) || !Array.isArray(data.matches)) {
+            throw new Error("Formato inválido");
+        }
+
+        if (confirm("Isso substituirá TODOS os dados atuais. Tem certeza?")) {
+            appState = data;
+            saveState();
+            render();
+            showModal('Sucesso', 'Torneio restaurado com sucesso!');
+        }
+    } catch (e) {
+        showModal('Erro ao Importar', 'O código colado não é válido. Verifique se copiou corretamente.');
+    }
+}
+
 // Logic: Minimal Bye Bracket Generator
 function generateBracketTree(participants) {
     let matchIdCounter = 1000;
@@ -814,6 +847,15 @@ function init() {
 
     const btnReset = document.getElementById('btn-reset');
     if (btnReset) btnReset.onclick = resetApp;
+
+    const btnExport = document.getElementById('btn-export');
+    if (btnExport) btnExport.onclick = actionExport;
+
+    const btnImport = document.getElementById('btn-import');
+    if (btnImport) btnImport.onclick = actionImport;
+
+    const btnImportHome = document.getElementById('btn-import-home');
+    if (btnImportHome) btnImportHome.onclick = actionImport;
 
     const btnGoKnockout = document.getElementById('btn-go-knockout');
     if (btnGoKnockout) btnGoKnockout.onclick = actionGenerateKnockout;
